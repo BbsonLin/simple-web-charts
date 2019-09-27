@@ -1,8 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div>
+      <b-navbar toggleable="lg" type="dark" variant="dark">
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-collapse class="justify-content-md-center" id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item to="/">Home</b-nav-item>
+            <b-nav-item to="/general-charts">General Charts</b-nav-item>
+            <b-nav-item to="/maps">Maps</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
     </div>
     <router-view />
   </div>
@@ -10,7 +18,7 @@
 
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

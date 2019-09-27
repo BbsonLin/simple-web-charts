@@ -10,8 +10,12 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "bootstrap-vue": "^2.0.2",
     "core-js": "^2.6.5",
+    "echarts": "^4.3.0",
     "vue": "^2.6.10",
+    "vue-echarts": "^4.0.4",
+    "vue-google-charts": "^0.3.2",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
