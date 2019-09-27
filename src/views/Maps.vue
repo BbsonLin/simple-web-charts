@@ -1,8 +1,8 @@
 <template>
   <b-container class="py-3">
-    <b-form-select v-model="selected" :options="options"></b-form-select>
+    <!-- <b-form-select v-model="selected" :options="options"></b-form-select> -->
     <h5 class="mt-3">
-      Selected: <strong>{{ selected }}</strong>
+      <strong>{{ selected }}</strong>
     </h5>
 
     <GChart
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      selected: 'gcharts',
+      mapType: 'gcharts',
       options: [
         { value: 'gcharts', text: 'Google Charts' },
         { value: 'echarts', text: 'ECharts' }
@@ -115,6 +115,20 @@ export default {
             }
           }
         ]
+      }
+    }
+  },
+  computed: {
+    selected: {
+      get() {
+        if (this.$i18n.locale != 'zh_cn') {
+          return 'gcharts'
+        } else {
+          return 'echarts'
+        }
+      },
+      set(val) {
+        this.mapType = val
       }
     }
   }
