@@ -45,6 +45,15 @@ var i18n = new VueI18n({
   messages
 })
 
+// Vue Fontawesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(fas)
+
+Vue.component('FAIcon', FontAwesomeIcon)
+
 // Vue
 Vue.config.productionTip = false
 
