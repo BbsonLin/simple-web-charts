@@ -12,7 +12,7 @@
       :options="gchartsOptions"
       :settings="gchartsSettings"
     />
-    <v-chart
+    <EChart
       v-if="selected == 'echarts'"
       :init-options="echartsInitOptions"
       :options="echartsOptions"

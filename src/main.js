@@ -16,7 +16,7 @@ import 'echarts/lib/component/visualMap'
 import 'echarts/lib/component/dataset'
 import 'echarts/extension/bmap/bmap'
 
-Vue.component('v-chart', VueECharts)
+Vue.component('EChart', VueECharts)
 
 // Vue-Google-Charts
 import VueGoogleCharts from 'vue-google-charts'
@@ -51,7 +51,7 @@ Vue.config.productionTip = false
 // Ref: https://github.com/vuejs/vue-router/issues/1668#issuecomment-437744248
 const fixIdScrolling = {
   watch: {
-    $route(to, from) {
+    $route() {
       const currentRoute = this.$router.currentRoute
       const idToScrollTo = currentRoute.hash
       this.$nextTick(() => {

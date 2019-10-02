@@ -1,25 +1,86 @@
 <template>
-  <b-container class="py-3">
+  <b-container class="py-3" fluid>
     <h3 id="line-charts" class="py-2">Line Charts</h3>
-    <GChart
-      type="LineChart"
-      :data="lineDataset.source"
-      :options="gchartsLineOptions"
-      :createChart="(el, google) => new google.charts.Line(el)"
-      :settings="{ packages: ['corechart', 'line'] }"
-    />
-    <v-chart
-      :init-options="echartsInitOptions"
-      :options="echartsLineOptions"
-      auto-resize
-    />
-    <hr>
-    <h3 id="bar-charts" class="py-2">Bar Charts</h3>
-    <GChart
-      type="ColumnChart"
-      :data="lineDataset.source"
-      :options="gchartsLineOptions"
-    />
+    <b-row>
+      <b-col class="d-flex align-items-center justify-content-center">
+        <GChart
+          type="LineChart"
+          :data="dataset.source"
+          :options="gchartsLineOptions"
+          :createChart="(el, google) => new google.charts.Line(el)"
+          :settings="{ packages: ['corechart', 'line'] }"
+        />
+      </b-col>
+      <b-col>
+        <EChart
+          :init-options="echartsInitOptions"
+          :options="echartsLineOptions"
+          auto-resize
+        />
+      </b-col>
+    </b-row>
+
+    <hr />
+
+    <h3 id="area-charts" class="py-2">Area Charts</h3>
+    <b-row>
+      <b-col class="d-flex align-items-center justify-content-center">
+        <GChart
+          type="AreaChart"
+          :data="dataset.source"
+          :options="gchartsAreaOptions"
+          :settings="{ packages: ['corechart'] }"
+        />
+      </b-col>
+      <b-col>
+        <EChart
+          :init-options="echartsInitOptions"
+          :options="echartsAreaOptions"
+          auto-resize
+        />
+      </b-col>
+    </b-row>
+
+    <hr />
+
+    <h3 id="column-charts" class="py-2">Column Charts</h3>
+    <b-row>
+      <b-col class="d-flex align-items-center justify-content-center">
+        <GChart
+          type="ColumnChart"
+          :data="dataset.source"
+          :options="gchartsLineOptions"
+        />
+      </b-col>
+      <b-col>
+        <EChart
+          :init-options="echartsInitOptions"
+          :options="echartsColumnOptions"
+          auto-resize
+        />
+      </b-col>
+    </b-row>
+
+    <hr />
+
+    <h3 id="pie-charts" class="py-2">Pie Charts</h3>
+    <b-row>
+      <b-col class="d-flex align-items-center justify-content-center">
+        <GChart
+          type="PieChart"
+          :data="dataset.source"
+          :options="gchartsPieOptions"
+          :settings="{ packages: ['corechart'] }"
+        />
+      </b-col>
+      <b-col>
+        <EChart
+          :init-options="echartsInitOptions"
+          :options="echartsPieOptions"
+          auto-resize
+        />
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -32,7 +93,7 @@ export default {
   },
   data() {
     return {
-      lineDataset: {
+      dataset: {
         // Provide data.
         source: [
           ['Product', '2015', '2016', '2017'],
@@ -45,29 +106,71 @@ export default {
       gchartsLineOptions: {
         title: 'Company Performance',
         curveType: 'function',
-        legend: { position: 'bottom' }
+        legend: { position: 'bottom' },
+        width: 600,
+        height: 500
       },
       gchartsLineSettings: {
         packages: ['line']
       },
+      gchartsAreaOptions: {
+        title: 'Company Performance',
+        hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
+        vAxis: { minValue: 0 },
+        width: 600,
+        height: 500
+      },
+      gchartsPieOptions: {
+        title: 'Company Performance',
+        width: 600,
+        height: 500
+      },
       echartsInitOptions: {
         renderer: 'canvas'
-      },
-      echartsLineOptions: {
+      }
+    }
+  },
+  computed: {
+    echartsLineOptions() {
+      return {
         legend: {},
         tooltip: {},
-        dataset: {
-          source: [
-            ['Product', '2015', '2016', '2017'],
-            ['Matcha Latte', ...this.randomize()],
-            ['Milk Tea', ...this.randomize()],
-            ['Cheese Cocoa', ...this.randomize()],
-            ['Walnut Brownie', ...this.randomize()]
-          ]
-        },
+        dataset: this.dataset,
         xAxis: { type: 'category' },
         yAxis: {},
         series: [{ type: 'line' }, { type: 'line' }, { type: 'line' }]
+      }
+    },
+    echartsAreaOptions() {
+      return {
+        legend: {},
+        tooltip: {},
+        dataset: this.dataset,
+        xAxis: { type: 'category' },
+        yAxis: {},
+        series: [
+          { type: 'line', areaStyle: {} },
+          { type: 'line', areaStyle: {} },
+          { type: 'line', areaStyle: {} }
+        ]
+      }
+    },
+    echartsColumnOptions() {
+      return {
+        legend: {},
+        tooltip: {},
+        dataset: this.dataset,
+        xAxis: { type: 'category' },
+        yAxis: {},
+        series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+      }
+    },
+    echartsPieOptions() {
+      return {
+        legend: {},
+        tooltip: {},
+        dataset: this.dataset,
+        series: [{ type: 'pie' }, { type: 'pie' }, { type: 'pie' }]
       }
     }
   },

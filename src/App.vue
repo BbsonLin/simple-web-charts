@@ -7,15 +7,23 @@
           <b-navbar-brand href="#">Charts</b-navbar-brand>
           <b-navbar-nav>
             <b-nav-item to="/">{{ $t('home') }}</b-nav-item>
-            <b-nav-item to="/general-charts">{{ $t('generalCharts') }}</b-nav-item>
+            <b-nav-item to="/general-charts">{{
+              $t('generalCharts')
+            }}</b-nav-item>
             <b-nav-item to="/maps">{{ $t('maps') }}</b-nav-item>
           </b-navbar-nav>
 
           <b-navbar-nav>
             <b-nav-item-dropdown :text="$t($i18n.locale)" right>
-              <b-dropdown-item @click="changeLanguage" data-lang="en">English</b-dropdown-item>
-              <b-dropdown-item @click="changeLanguage" data-lang="zh_tw">繁體中文</b-dropdown-item>
-              <b-dropdown-item @click="changeLanguage" data-lang="zh_cn">简体中文</b-dropdown-item>
+              <b-dropdown-item @click="changeLanguage" data-lang="en">
+                English
+              </b-dropdown-item>
+              <b-dropdown-item @click="changeLanguage" data-lang="zh_tw">
+                繁體中文
+              </b-dropdown-item>
+              <b-dropdown-item @click="changeLanguage" data-lang="zh_cn">
+                简体中文
+              </b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
