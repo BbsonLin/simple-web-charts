@@ -186,8 +186,4 @@ export default {
 </script>
 
 <style lang="scss">
-.echarts {
-  height: 50vh;
-  width: 100%;
-}
 </style>

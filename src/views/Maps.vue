@@ -23,6 +23,7 @@
 
 <script>
 import { GChart } from 'vue-google-charts'
+import bmapTW from '@/data/bmap-tw'
 
 export default {
   components: {
@@ -36,20 +37,21 @@ export default {
         { value: 'echarts', text: 'ECharts' }
       ],
       gchartsData: [
-        ['Country', 'Popularity'],
-        ['Germany', 200],
-        ['United States', 300],
-        ['Brazil', 400],
-        ['Canada', 500],
-        ['France', 600],
-        ['RU', 700]
+        ['City', 'Popularity'],
+        ['Taipei', 268],
+        ['New Taipei', 401],
+        ['Taoyuan', 224],
+        ['Taichung', 281],
+        ['Kaohsiung', 277],
+        ['Tainan', 188]
       ],
       gchartsOptions: {
         // sizeAxis: { minValue: 0, maxValue: 100 },
-        region: 'IT',
+        region: 'TW',
         displayMode: 'markers',
-        magnifyingGlass: { enable: true, zoomFactor: 10.0 }
-        // colorAxis: {colors: ['#e7711c', '#4374e0']} // orange to blue
+        markerOpacity: 0.7,
+        magnifyingGlass: { enable: true, zoomFactor: 10.0 },
+        colorAxis: { colors: ['#32CD32', '#006400'] }
       },
       gchartsSettings: {
         packages: ['geochart'],
@@ -75,29 +77,32 @@ export default {
           }
         },
         visualMap: {
-          min: 0,
-          max: 0,
+          min: 180,
+          max: 450,
           left: 'left',
           top: 'bottom',
           text: ['高', '低'],
           calculable: true,
           itemHeight: 70,
           inRange: {
-            color: ['#005316', '#00CC35']
+            color: ['#32CD32', '#006400']
           }
         },
-        bmap: {
-          center: [108.95, 34.27],
-          zoom: 5,
-          roam: true
-        },
+        bmap: bmapTW,
         series: [
           {
-            name: 'sale',
+            name: 'Popularity',
             type: 'scatter',
             coordinateSystem: 'bmap',
-            data: [],
-            symbolSize: val => val[2] / 10,
+            data: [
+              { name: 'Taipei', value: [121.567, 25.016, 268] },
+              { name: 'New Taipei', value: [121.45, 25.016, 401] },
+              { name: 'Taoyuan', value: [121.3, 24.983, 224] },
+              { name: 'Taichung', value: [120.616, 24.183, 281] },
+              { name: 'Kaohsiung', value: [120.283, 22.633, 277] },
+              { name: 'Tainan', value: [120.15, 23.0, 188] }
+            ],
+            symbolSize: val => val[2] / 23,
             label: {
               normal: {
                 formatter: '{b}',
@@ -137,7 +142,7 @@ export default {
 
 <style lang="scss">
 .echarts {
-  height: 60vh;
+  height: 70vh;
   width: 100%;
 }
 </style>
